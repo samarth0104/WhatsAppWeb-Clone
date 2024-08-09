@@ -1,5 +1,7 @@
 import { Box, styled, Typography } from "@mui/material";
 import { Search, MoreVert } from "@mui/icons-material";
+import { AccountContext } from "../context/AccountProvider";
+import { useContext, useEffect } from "react";
 
 const Component = styled(Box)`
     height: 4vh;
@@ -47,12 +49,13 @@ const RComponent = styled(Box)`
 `;
 
 const ChatHeader = ({ person }) => {
+    const { activeUsers } = useContext(AccountContext);
     return (
         <Component>
             <Image src={person.picture} />
             <TextContainer>
                 <Namez>{person.name}</Namez>
-                <Status>Online</Status>
+                <Status>{activeUsers?.find(user => user.sub === person.sub) ? 'Online' : 'Offline'}</Status>
             </TextContainer>
             <RComponent>
                 <Search />

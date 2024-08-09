@@ -22,7 +22,7 @@ const InputContainer = styled(Box)`
   padding: 0 12px;
 `;
 
-const Footer = ({ sendText, setText, value, file, setFile }) => {
+const Footer = ({ sendText, setValue, value, file, setFile }) => {
   // useEffect(() => {
   //   const getImage = async () => {
   //     if (file) {
@@ -49,7 +49,7 @@ const Footer = ({ sendText, setText, value, file, setFile }) => {
       {/* <input type='file' id="fileInput" style={{ display: 'none', cursor: "pointer" }} onChange={(e) => { onFileChange(e) }} /> */}
       <InputContainer>
         <InputBase placeholder="Type a message" fullWidth
-          onChange={(e) => setText(e.target.value)}
+          onChange={(e) => setValue(e.target.value)}
           onKeyDown={(e) => sendText(e)}
           value={value} />
       </InputContainer>
