@@ -1,55 +1,61 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Dialog from '@mui/material/Dialog';
 import { Box, Typography, styled } from '@mui/material';
 import { GoogleLogin } from '@react-oauth/google';
-import { useContext } from 'react';
 import { AccountContext } from '../context/AccountProvider';
 import { addUser } from '../../service/api';
-
-
 import '@fontsource/roboto';  // Import Roboto font
 import { jwtDecode } from 'jwt-decode';
 
 const dialogStyle = {
-    height: '70%',
-    marginTop: '2%',
-    width: '60%',
+    height: '75%',
+    width: '40%',
     maxWidth: '100%',
     maxHeight: '100%',
     boxShadow: 'none',
-    position: 'relative',  // Add relative positioning for the dialog box
+    position: 'relative',
+    borderRadius: '10px', // Rounded corners for a modern look
 };
 
 const Component = styled(Box)`
-    text-align: center;  // Center text horizontally
-    padding: 2% 0 0 0;
-    font-family: 'Roboto', sans-serif;  // Apply custom font to this component
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: #f1f1f1;  // Light background color
+    padding: 40px 20px;
+    box-sizing: border-box;  // Ensure padding doesn't affect overall size
 `;
 
-const CustomTypography1 = styled(Typography)`
-    font-family: 'Roboto', sans-serif;  // Apply custom font to Typography
-    font-size: 32px;  // Example of custom styling for the p tag
-    color: #333;  // Example color
+const TitleTypography = styled(Typography)`
+    font-family: 'Roboto', sans-serif;
+    font-size: 32px;
+    font-weight: 700;  // Bolder weight for title
+    color: #222;  // Darker color for better contrast
+    margin-bottom: 20px;  // Space between title and subtitle
+    // text-transform: uppercase;  // Transform text to uppercase for impact
 `;
 
-const CustomTypography2 = styled(Typography)`
-    font-family: 'Roboto', sans-serif;  // Apply custom font to Typography
-    font-size: 16px;  // Example of custom styling for the p tag
-    color: #333;  // Example color
-    margin-top: 16px;  // Add margin to move this text below the title
+const SubtitleTypography = styled(Typography)`
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;  // Slightly larger for better readability
+    font-weight: 300;  // Lighter weight for subtitle
+    color: #555;  // Softer color for subtitle to create hierarchy
+    margin-bottom: 40px;  // More space before the login button
+    text-align: center;  // Center the text
 `;
 
 const GoogleLoginWrapper = styled(Box)`
-    position: absolute;  // Absolute positioning
-    top: 30%;  // Vertically center
-    left: 50%;  // Horizontally center
-    transform: translate(-50%, -50%);  // Adjust position back to center
+    width: 100%;  // Full width for the Google button
+    display: flex;
+    justify-content: center;  // Center the Google button
 `;
 
 const LoginDialog = () => {
-    const { setAccount } = useContext(AccountContext)
+    const { setAccount } = useContext(AccountContext);
+
     const onLoginSuccess = async (res) => {
-        // console.log('Login Success:', res);
         if (res && res.credential) {
             const decodedZ = jwtDecode(res.credential);
             console.log(decodedZ);
@@ -70,12 +76,15 @@ const LoginDialog = () => {
             PaperProps={{ sx: dialogStyle }}
             hideBackdrop={true}>
             <Component>
-                <CustomTypography1>Welcome to Whatsapp Web Clone</CustomTypography1>
-                <CustomTypography2>Please Sign In using your Google Account</CustomTypography2>
+                <TitleTypography>Welcome to WhatsApp Web Clone</TitleTypography>
+                <SubtitleTypography>Please sign in using your Google Account</SubtitleTypography>
                 <GoogleLoginWrapper>
                     <GoogleLogin
                         onSuccess={onLoginSuccess}
-                        onError={onLoginError} />
+                        onError={onLoginError}
+                        shape="pill"  // Use a rounded button for a modern look
+                        theme="filled_blue"  // Use the blue theme for the button
+                    />
                 </GoogleLoginWrapper>
             </Component>
         </Dialog>

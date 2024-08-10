@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { AccountContext } from "../../context/AccountProvider";
-import { Box, styled } from '@mui/material';
+import { Box, styled, Typography } from '@mui/material';
 import { Chat as MessageIcon } from '@mui/icons-material';
 
 import HeaderMenu from "./HeaderMenu";
@@ -22,16 +22,26 @@ const Image = styled('img')`
 `;
 
 const Options1 = styled(Box)`
-    margin-left: 75%;
+    margin-left: 60%;
     font-size: 25%;
-        cursor: pointer;
+    cursor: pointer;
 `;
+
 
 const Options = styled(Box)`
     margin-left: auto;
     font-size: 18px;
         cursor: pointer;
 `;
+
+const StyledTypography = styled(Typography)`
+    font-family: 'Roboto', sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: #4A4A4A;
+    margin-left: 3%;
+`;
+
 
 const Header = () => {
     const { account } = useContext(AccountContext);
@@ -45,6 +55,7 @@ const Header = () => {
         <>
             <Component>
                 <Image src={account.picture} alt="dp" onClick={toggleDrawer} />
+                <StyledTypography> Chats</StyledTypography>
                 <Options1>
                     <MessageIcon />
                 </Options1>

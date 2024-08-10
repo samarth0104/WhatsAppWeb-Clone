@@ -1,7 +1,7 @@
 import { Box, InputBase, styled } from "@mui/material";
 import { EmojiEmotionsOutlined, AttachFile, Mic } from "@mui/icons-material";
-import { useEffect } from "react";
-import { uploadFile } from "../../service/api"
+// import { useEffect } from "react";
+// import { uploadFile } from "../../service/api"
 
 const Component = styled(Box)`
   background: #ededed;
