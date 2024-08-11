@@ -13,4 +13,5 @@ function App() {
   );
 }
 
+document.title = "WhatsApp Web Clone";
 export default App;

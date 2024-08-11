@@ -1,7 +1,7 @@
 import { Box, styled, Typography } from "@mui/material";
 import { Search, MoreVert } from "@mui/icons-material";
 import { AccountContext } from "../context/AccountProvider";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 
 const Component = styled(Box)`
     height: 4vh;
