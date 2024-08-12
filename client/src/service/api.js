@@ -53,6 +53,17 @@ export const getMessages = async (id) => {
         console.log('Error while calling getMessages API ', error);
     }
 }
+
+export const interactWithBot = async (message) => {
+    try {
+        const response = await axios.post(`${url}/bot/interact`, { message });
+        return response.data.botReply;
+    } catch (error) {
+        console.log('Error while calling interactWithBot API', error.message);
+        return "Sorry, something went wrong with the bot interaction.";
+    }
+};
+
 // export const uploadFile = async (data) => {
 //     try {
 //         return await axios.post(`${url}/file/upload`, data);
