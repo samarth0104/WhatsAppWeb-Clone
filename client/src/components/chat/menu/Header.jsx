@@ -15,7 +15,7 @@ const OpenAIIcon = styled('svg')`
 `;
 
 const Component = styled(Box)`
-    height: 60px;
+    height: 68px;
     background: #ededed;
     display: flex;
     align-items: center;

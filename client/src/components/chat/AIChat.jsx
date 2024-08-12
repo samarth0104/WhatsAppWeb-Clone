@@ -8,12 +8,13 @@ import { AccountContext } from '../context/AccountProvider';
 const Wrapper = styled(Box)`
     background-image: url(${'https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'});
     background-size: 50%;
+    border-radius: 10px;
 `;
 
 const Component = styled(Box)`
     height: 68vh;
     overflow-y: scroll;
-    padding: 10px;
+    border-radius: 10px;
 `;
 
 const Sent = styled(Box)`
@@ -37,6 +38,7 @@ const Rec = styled(Box)`
     border-radius: 10px;
     margin-top: 4px;
     word-break: break-word;
+    margin-left: 8px;
 `;
 
 const Text = styled(Typography)`
@@ -74,6 +76,7 @@ const AIChat = ({ onClose }) => {
         if (!value) return;
 
         if (code === 13) {
+            setValue('');
             const userMessage = {
                 senderId: account.sub,
                 text: value,
@@ -104,7 +107,7 @@ const AIChat = ({ onClose }) => {
                 setMessages((prev) => [...prev, errorMessage]);
             }
 
-            setValue('');
+
             setLoading(false);
         }
     };
@@ -115,12 +118,12 @@ const AIChat = ({ onClose }) => {
 
     return (
         <Dialog open={true} onClose={onClose} fullWidth maxWidth="sm">
-            <Header>Chat GPT</Header>
+            <Header>ChatBot</Header>
             <DialogContent>
                 <Wrapper>
                     <Component>
                         {messages.map((message, index) => (
-                            <Box ref={scrollRef} key={index}>
+                            <Box ref={scrollRef} key={index} style={{ "border-radius": "10px" }}>
                                 {account.sub === message.senderId ? (
                                     <Sent>
                                         <Text>{message.text}</Text>
@@ -135,7 +138,7 @@ const AIChat = ({ onClose }) => {
                             </Box>
                         ))}
                     </Component>
-                    <Footer
+                    <Footer style={{ "border-radius": "10px" }}
                         sendText={sendText}
                         value={value}
                         setValue={setValue}
