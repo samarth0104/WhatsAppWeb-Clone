@@ -64,6 +64,16 @@ export const interactWithBot = async (message) => {
     }
 };
 
+
+export const getMessageStats = async (senderId, receiverId) => {
+    try {
+        const response = await axios.post(`${url}/message/stats`, { senderId, receiverId });
+        return response.data;
+    } catch (error) {
+        console.log('Error while calling getMessageStats API', error.message);
+    }
+};
+
 // export const uploadFile = async (data) => {
 //     try {
 //         return await axios.post(`${url}/file/upload`, data);
